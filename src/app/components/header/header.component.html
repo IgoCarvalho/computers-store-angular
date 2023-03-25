@@ -1,49 +1,63 @@
 <header class="w-full bg-white shadow-sm">
   <div class="container mx-auto flex justify-between py-3">
-    <h1 class="text-3xl font-bold text-sky-700 flex items-center">
-      <i class="ph ph-desktop mr-2"></i>
-      Computers
-      <span class="text-orange-500">Store</span>
-    </h1>
+    <a routerLink="/">
+      <h1 class="text-3xl font-bold text-sky-700 flex items-center">
+        <i class="ph ph-desktop mr-2"></i>
+        Computers
+        <span class="text-orange-500">Store</span>
+      </h1>
+    </a>
 
     <div class="flex items-center justify-end flex-wrap gap-6">
       <nav>
-        <ul class="flex items-center gap-4 text-lg">
-          <li><a href="" class="hover:text-sky-400">Produtos</a></li>
+        <ul class="flex items-center text-lg divide-x">
           <li>
-            <a href="" class="flex items-center gap-1 hover:text-sky-400">
+            <a routerLink="/produtos" class="px-3 hover:text-sky-400"
+              >Produtos</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/carrinho"
+              class="flex items-center gap-1 px-3 hover:text-sky-400"
+            >
               <i class="ph-bold ph-shopping-cart"></i>
               Carrinho
               <span
                 class="w-7 h-7 flex items-end justify-center bg-sky-500 text-stone-100 rounded-full"
               >
-                {{cartService.total()}}
+                {{ cartService.total() }}
               </span>
             </a>
           </li>
-          <li><a href="" class="hover:text-sky-400">Contato</a></li>
           <li>
-            <a href="" class="hover:text-sky-400"
-              ><i class="text-2xl ph-fill ph-facebook-logo"></i
-            ></a>
-          </li>
-          <li>
-            <a href="" class="hover:text-sky-400"
-              ><i class="text-2xl ph-fill ph-instagram-logo"></i
-            ></a>
-          </li>
-          <li>
-            <a href="" class="hover:text-sky-400"
-              ><i class="text-2xl ph-fill ph-twitter-logo"></i
-            ></a>
-          </li>
-          <li>
-            <a href="" class="hover:text-sky-400"
-              ><i class="text-2xl ph-fill ph-linkedin-logo"></i
-            ></a>
+            <a routerLink="/contato" class="px-3 hover:text-sky-400">Contato</a>
           </li>
         </ul>
       </nav>
+
+      <ul class="flex gap-2">
+        <li>
+          <a href="" class="hover:text-sky-400"
+            ><i class="text-2xl ph-fill ph-facebook-logo"></i
+          ></a>
+        </li>
+        <li>
+          <a href="" class="hover:text-sky-400"
+            ><i class="text-2xl ph-fill ph-instagram-logo"></i
+          ></a>
+        </li>
+        <li>
+          <a href="" class="hover:text-sky-400"
+            ><i class="text-2xl ph-fill ph-twitter-logo"></i
+          ></a>
+        </li>
+        <li>
+          <a href="" class="hover:text-sky-400"
+            ><i class="text-2xl ph-fill ph-linkedin-logo"></i
+          ></a>
+        </li>
+      </ul>
 
       <form class="flex istems-center rounded-lg overflow-hidden">
         <input
