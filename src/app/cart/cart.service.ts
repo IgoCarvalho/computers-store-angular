@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Product } from 'src/app/products/productsData';
 
-interface CartItem {
+export interface CartItem {
   item: Product;
   quantity: number;
 }
@@ -12,7 +12,7 @@ interface CartItem {
 })
 export class CartService {
   private cartKey = '@ComputerStore:cart';
-  items: CartItem[];
+  private items: CartItem[];
 
   constructor() {
     this.items = this.getFromStorage();
@@ -46,5 +46,16 @@ export class CartService {
 
   total() {
     return this.items.length;
+  }
+
+  getAll() {
+    return this.items;
+  }
+
+  remove(itemId: number) {
+    const filteredItems = this.items.filter(cartItem => cartItem.item.id !== itemId)
+
+    this.items = filteredItems;
+    this.saveToStorage();
   }
 }

@@ -1,1 +1,64 @@
-<p>cart works!</p>
+<section class="py-4">
+  <h1 class="text-4xl font-bold mb-6">Carrinho</h1>
+
+  <div *ngIf="this.cartItems.length > 0; else emptyCart">
+    <ul class="gap-4 flex flex-col">
+      <li
+        class="flex justify-between items-center text-lg rounded-lg shadow bg-white"
+        *ngFor="let cartItem of cartItems"
+      >
+        <div class="flex items-center gap-8 flex-[2]">
+          <img
+            class="max-w-[80px] aspect-square rounded-l-lg"
+            [src]="cartItem.item.image"
+            [alt]="cartItem.item.description"
+          />
+
+          <p class="text-xl">{{ cartItem.item.description }}</p>
+        </div>
+
+        <strong class="flex-1">{{ cartItem.item.price | currency : "BRL" }}</strong>
+
+        <label class="flex-1">
+          Quantidade:
+          <input
+            name="product-quantity"
+            type="number"
+            class="border border-gray-300 pl-2 max-w-[48px] rounded ml-1"
+            min="1"
+            [(ngModel)]="cartItem.quantity"
+            (change)="calculateTotalPrice()"
+          />
+        </label>
+
+        <button
+          type="button"
+          class="bg-red-100 hover:bg-red-200 text-red-800 h-10 w-10 flex justify-center items-center text-2xl px-5 mr-4 rounded-lg"
+          (click)="removeItem(cartItem.item.id)"
+        >
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </li>
+    </ul>
+
+    <div class="mt-8 flex justify-end items-center gap-4">
+      <h2 class="text-2xl">Total: {{totalPrice | currency:'BRL'}}</h2>
+
+      <button
+        type="button"
+        class="flex justify-center items-center gap-2 text-lg bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded transition duration-150"
+        (click)="buyItems()"
+      >
+        Comprar itens
+      </button>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="h-[50vh] flex flex-col items-center justify-center">
+      <i class="ph ph-shopping-cart text-8xl"></i>
+
+      <strong class="text-4xl mt-4">O carrinho esta vazio!</strong>
+    </div>
+  </ng-template>
+</section>
