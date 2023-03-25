@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
-import { ProductItemComponent } from './product-item/product-item.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }
