@@ -14,6 +14,7 @@ const routes: Routes = [
     path: 'carrinho',
     loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
   },
+  { path: 'contato', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: '**', component: NotFoundComponent },
 ];
 
