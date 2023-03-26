@@ -59,18 +59,20 @@
         </li>
       </ul>
 
-      <form class="flex istems-center rounded-lg overflow-hidden">
+      <form class="flex istems-center rounded-lg overflow-hidden" (ngSubmit)="handleSearch()">
         <input
           type="search"
           name="search"
           placeholder="Buscar..."
-          class="bg-gray-300 py-2 px-4"
+          class="bg-gray-200 py-2 px-4"
+          [(ngModel)]="searchText"
         />
         <button
+          type="submit"
           title="Buscar"
           class="bg-sky-700 py-2 px-3 text-lg text-gray-50"
         >
-          <i class="ph ph-magnifying-glass"></i>
+          <i class="ph-bold ph-magnifying-glass"></i>
         </button>
       </form>
     </div>
