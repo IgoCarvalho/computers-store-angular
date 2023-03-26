@@ -2,41 +2,191 @@
   <h1 class="text-4xl font-bold mb-8">Entre em contator</h1>
 
   <div class="flex gap-14 justify-between">
-    <form class="flex-1 space-y-2 max-w-3xl">
-      <input
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        type="text"
-        name="name"
-        placeholder="Digite seu nome"
-      />
-      <input
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        type="text"
-        name="subject"
-        placeholder="Digite o assunto"
-      />
-      <input
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        type="tel"
-        name="phone"
-        placeholder="(00) 9 1234-5678"
-      />
-      <input
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        type="email"
-        name="email"
-        placeholder="Digite seu e-mail"
-      />
-      <textarea
-        name="message"
-        maxlength="300"
-        placeholder="Digite a sua mensagem"
-        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-      ></textarea>
+    <form class="flex-1 space-y-3 max-w-3xl" [formGroup]="contactForm" (ngSubmit)="sendForm()">
+      <div>
+        <label for="name" class="block mb-1 text-sm font-medium text-gray-900"
+          >Username</label
+        >
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [ngClass]="{
+            'ring-red-500 ring-1':
+              contactForm.controls['name'].invalid &&
+              (contactForm.controls['name'].touched ||
+                contactForm.controls['name'].dirty)
+          }"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Digite seu nome"
+          formControlName="name"
+        />
+        <div
+          class="mt-1 text-sm text-red-500"
+          *ngIf="
+            contactForm.controls['name'].invalid &&
+            (contactForm.controls['name'].touched ||
+              contactForm.controls['name'].dirty)
+          "
+        >
+          <p *ngIf="contactForm.controls['name'].hasError('required')">
+            Este campo precisa ser preenchido
+          </p>
+          <p *ngIf="contactForm.controls['name'].hasError('minlength')">
+            Este campo precisa de no mínimo 4 caracteres
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label for="subject" class="block mb-1 text-sm font-medium text-gray-900"
+          >Assunto</label
+        >
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [ngClass]="{
+            'ring-red-500 ring-1':
+              contactForm.controls['subject'].invalid &&
+              (contactForm.controls['subject'].touched ||
+                contactForm.controls['subject'].dirty)
+          }"
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Digite o assunto"
+          formControlName="subject"
+        />
+        <div
+          class="mt-1 text-sm text-red-500"
+          *ngIf="
+            contactForm.controls['subject'].invalid &&
+            (contactForm.controls['subject'].touched ||
+              contactForm.controls['subject'].dirty)
+          "
+        >
+          <p *ngIf="contactForm.controls['subject'].hasError('required')">
+            Este campo precisa ser preenchido
+          </p>
+          <p *ngIf="contactForm.controls['subject'].hasError('minlength')">
+            Este campo precisa de no mínimo 10 caracteres
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label for="phone" class="block mb-1 text-sm font-medium text-gray-900"
+          >Telefone</label
+        >
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [ngClass]="{
+            'ring-red-500 ring-1':
+              contactForm.controls['phone'].invalid &&
+              (contactForm.controls['phone'].touched ||
+                contactForm.controls['phone'].dirty)
+          }"
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="(00) 9 1234-5678"
+          formControlName="phone"
+          mask="(00) 0 0000-0000"
+        />
+        <div
+          class="mt-1 text-sm text-red-500"
+          *ngIf="
+            contactForm.controls['phone'].invalid &&
+            (contactForm.controls['phone'].touched ||
+              contactForm.controls['phone'].dirty)
+          "
+        >
+          <p *ngIf="contactForm.controls['phone'].hasError('required')">
+            Este campo precisa ser preenchido
+          </p>
+          <p *ngIf="contactForm.controls['phone'].hasError('minlength')">
+            Este campo precisa de no mínimo 11 caracteres
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block mb-1 text-sm font-medium text-gray-900"
+          >E-mail</label
+        >
+        <input
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          [ngClass]="{
+            'ring-red-500 ring-1':
+              contactForm.controls['email'].invalid &&
+              (contactForm.controls['email'].touched ||
+                contactForm.controls['email'].dirty)
+          }"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Digite seu e-mail"
+          formControlName="email"
+        />
+        <div
+          class="mt-1 text-sm text-red-500"
+          *ngIf="
+            contactForm.controls['email'].invalid &&
+            (contactForm.controls['email'].touched ||
+              contactForm.controls['email'].dirty)
+          "
+        >
+          <p *ngIf="contactForm.controls['email'].hasError('required')">
+            Este campo precisa ser preenchido
+          </p>
+          <p *ngIf="contactForm.controls['email'].hasError('email')">
+            Digite um email válido
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="message"
+          class="block mb-1 text-sm font-medium text-gray-900"
+        >
+          Mensagem
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          maxlength="300"
+          rows="4"
+          formControlName="message"
+          placeholder="Digite a sua mensagem"
+          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+          [ngClass]="{
+            'ring-red-500 ring-1':
+              contactForm.controls['message'].invalid &&
+              (contactForm.controls['message'].touched ||
+                contactForm.controls['message'].dirty)
+          }"
+        ></textarea>
+        <div
+          class="mt-1 text-sm text-red-500"
+          *ngIf="
+            contactForm.controls['message'].invalid &&
+            (contactForm.controls['message'].touched ||
+              contactForm.controls['message'].dirty)
+          "
+        >
+          <p *ngIf="contactForm.controls['message'].hasError('required')">
+            Este campo precisa ser preenchido
+          </p>
+          <p *ngIf="contactForm.controls['message'].hasError('minlength')">
+            Este campo precisa de no mínimo 20 caracteres
+          </p>
+        </div>
+      </div>
 
       <button
         type="submit"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        class="text-white bg-blue-700 hover:bg-blue-800 disabled:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        [disabled]="contactForm.invalid"
       >
         Enviar
       </button>
@@ -51,7 +201,9 @@
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
-      <p class="text-center mt-2">Av. José de Freitas Queiroz, 5003 - Quixadá, CE, 63902-580</p>
+      <p class="text-center mt-2">
+        Av. José de Freitas Queiroz, 5003 - Quixadá, CE, 63902-580
+      </p>
     </address>
   </div>
 </section>
